@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ListviewPage extends StatefulWidget {
   const ListviewPage({Key? key}) : super(key: key);
@@ -10,462 +11,88 @@ class ListviewPage extends StatefulWidget {
 }
 
 class _ListviewPageState extends State<ListviewPage> {
+  List<Color> colorList = [
+    Colors.orangeAccent,
+    Colors.purple,
+    Colors.blueAccent,
+    Colors.redAccent,
+    Colors.blue,
+    Colors.orangeAccent,
+    Colors.purple,
+    Colors.blueAccent,
+    Colors.redAccent,
+    Colors.blue
+  ];
+
+  List<Contact> contactList = [
+    Contact("Ilhomjon", "+998945096336"),
+    Contact("Javlon aka", "+998901234567"),
+    Contact("Doniyor", "+9989300000000"),
+    Contact("Mansurbek", "+998914747474"),
+    Contact("Sanjar aka", "+9989341000140"),
+    Contact("Sardorbek", "+99896547841"),
+    Contact("Shaxriyor", "+998911122767"),
+    Contact("Ucell Call Centre", "8123"),
+    Contact("PDP Call Centre", "+998787774747"),
+    Contact("My number", "+998930000342"),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Messages"),
+        title: Text("Contacts"),
       ),
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        child: ListView(
-          children: [
-            Card(
-              margin: EdgeInsets.only(top: 5, bottom: 5),
-              elevation: 0,
-              child: ListTile(
-                leading: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/img.png"),
-                      )),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Laurent"),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text("20:18",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  ],
-                ),
-                subtitle: Text(
-                  "How about meeting tomorrow?",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 30,
-                ),
-              ),
-            ),
-            Divider(),
-            Card(
-              margin: EdgeInsets.only(top: 5, bottom: 5),
-              elevation: 0,
-              child: ListTile(
-                leading: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/img_1.png"),
-                      )),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Tracy"),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text("19:22",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  ],
-                ),
-                subtitle: Text(
-                  "Flutter is just release1.0 oficially.",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 30,
-                ),
-              ),
-            ),
-            Divider(),
-            Card(
-              margin: EdgeInsets.only(top: 5, bottom: 5),
-              elevation: 0,
-              child: ListTile(
-                leading: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/img_2.png"),
-                      )),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Claire"),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text("14:34",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  ],
-                ),
-                subtitle: Text(
-                  "I was not aware of that. Let me check",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 30,
-                ),
-              ),
-            ),
-            Divider(),
-            Card(
-              margin: EdgeInsets.only(top: 5, bottom: 5),
-              elevation: 0,
-              child: ListTile(
-                leading: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/img_3.png"),
-                      )),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Lisa"),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text("11:05",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  ],
-                ),
-                subtitle: Text(
-                  "I love that idea, It's great!",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 30,
-                ),
-              ),
-            ),
-            Divider(),
-            Card(
-              margin: EdgeInsets.only(top: 5, bottom: 5),
-              elevation: 0,
-              child: ListTile(
-                leading: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/img_4.png"),
-                      )),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Mark"),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text("09:46",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  ],
-                ),
-                subtitle: Text(
-                  "It totally makes sense to get some extra day-off",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 30,
-                ),
-              ),
-            ),
-            Divider(),
-            Card(
-              margin: EdgeInsets.only(top: 5, bottom: 5),
-              elevation: 0,
-              child: ListTile(
-                leading: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/img_5.png"),
-                      )),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Julietta"),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text("08:15",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  ],
-                ),
-                subtitle: Text(
-                  "It has been re-scheduled to next Saturday 7.30pm",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 30,
-                ),
-              ),
-            ), Card(
-              margin: EdgeInsets.only(top: 5, bottom: 5),
-              elevation: 0,
-              child: ListTile(
-                leading: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/img.png"),
-                      )),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Laurent"),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text("20:18",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  ],
-                ),
-                subtitle: Text(
-                  "How about meeting tomorrow?",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 30,
-                ),
-              ),
-            ),
-            Divider(),
-            Card(
-              margin: EdgeInsets.only(top: 5, bottom: 5),
-              elevation: 0,
-              child: ListTile(
-                leading: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/img_1.png"),
-                      )),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Tracy"),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text("19:22",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  ],
-                ),
-                subtitle: Text(
-                  "Flutter is just release1.0 oficially.",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 30,
-                ),
-              ),
-            ),
-            Divider(),
-            Card(
-              margin: EdgeInsets.only(top: 5, bottom: 5),
-              elevation: 0,
-              child: ListTile(
-                leading: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/img_2.png"),
-                      )),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Claire"),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text("14:34",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  ],
-                ),
-                subtitle: Text(
-                  "I was not aware of that. Let me check",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 30,
-                ),
-              ),
-            ),
-            Divider(),
-            Card(
-              margin: EdgeInsets.only(top: 5, bottom: 5),
-              elevation: 0,
-              child: ListTile(
-                leading: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/img_3.png"),
-                      )),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Lisa"),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text("11:05",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  ],
-                ),
-                subtitle: Text(
-                  "I love that idea, It's great!",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 30,
-                ),
-              ),
-            ),
-            Divider(),
-            Card(
-              margin: EdgeInsets.only(top: 5, bottom: 5),
-              elevation: 0,
-              child: ListTile(
-                leading: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/img_4.png"),
-                      )),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Mark"),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text("09:46",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  ],
-                ),
-                subtitle: Text(
-                  "It totally makes sense to get some extra day-off",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 30,
-                ),
-              ),
-            ),
-            Divider(),
-            Card(
-              margin: EdgeInsets.only(top: 5, bottom: 5),
-              elevation: 0,
-              child: ListTile(
-                leading: Container(
-                  width: 60,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage("assets/images/img_5.png"),
-                      )),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Julietta"),
-                    SizedBox(
-                      width: 15,
-                    ),
-                    Text("08:15",
-                        style: TextStyle(color: Colors.grey, fontSize: 12)),
-                  ],
-                ),
-                subtitle: Text(
-                  "It has been re-scheduled to next Saturday 7.30pm",
-                  style: TextStyle(color: Colors.grey),
-                ),
-                trailing: Icon(
-                  Icons.keyboard_arrow_right,
-                  size: 30,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+          width: MediaQuery.of(context).size.width,
+          child: ListView.builder(
+              itemCount: contactList.length,
+              itemBuilder: (context, index) {
+                return card(index);
+              })),
     );
   }
+
+  Widget card(int index) {
+    return Card(
+        margin: EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
+        elevation: 1,
+        child: ListTile(
+          leading: CircleAvatar(
+            backgroundColor: colorList[index],
+            radius: 25,
+            child: Text(
+              contactList[index].name[0],
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          title: Text(contactList[index].name),
+          subtitle: Text(
+            "Mobile : ${contactList[index].phone}",
+            style: TextStyle(color: Colors.grey),
+          ),
+          trailing: IconButton(
+            onPressed: () {
+              launch("tel:${contactList[index].phone}");
+            },
+            icon: Icon(
+              Icons.phone,
+              size: 30,
+              color: Colors.green,
+            ),
+          ),
+        ));
+  }
+}
+
+class Contact {
+  String name;
+  String phone;
+
+  Contact(this.name, this.phone);
 }

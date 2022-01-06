@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:widget_catalog/pages/buttons_page.dart';
 import 'package:widget_catalog/pages/listview_page.dart';
+import 'package:widget_catalog/pages/wifi_page.dart';
 import 'dialog_and _drawer_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -63,6 +64,21 @@ class _HomePageState extends State<HomePage> {
                 Navigator.pushNamed(context, ListviewPage.id);
               },
               child: Text("ListView, Card, ListTile Page"),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+
+            // Switch WI FI
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  shape: StadiumBorder(),
+                  primary: Colors.blueAccent,
+                  minimumSize: Size(200, 50)),
+              onPressed: () {
+                Navigator.pushNamed(context, WiFiPage.id);
+              },
+              child: Text("WiFi"),
             ),
           ],
         ),
