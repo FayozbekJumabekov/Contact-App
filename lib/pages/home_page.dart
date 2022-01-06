@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widget_catalog/pages/buttons_page.dart';
-import 'package:widget_catalog/pages/single_child_scroll.dart';
-
+import 'package:widget_catalog/pages/listview_page.dart';
 import 'dialog_and _drawer_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,16 +53,16 @@ class _HomePageState extends State<HomePage> {
               height: 20,
             ),
 
-            // SingleCHildScrollView
+            // ListView
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   shape: StadiumBorder(),
                   primary: Colors.blueAccent,
                   minimumSize: Size(200, 50)),
               onPressed: () {
-                Navigator.pushNamed(context, SingleChildScroll.id);
+                Navigator.pushNamed(context, ListviewPage.id);
               },
-              child: Text("Single Child Scroll"),
+              child: Text("ListView, Card, ListTile Page"),
             ),
           ],
         ),
