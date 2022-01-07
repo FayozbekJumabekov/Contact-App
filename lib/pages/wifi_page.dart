@@ -11,6 +11,7 @@ class WiFiPage extends StatefulWidget {
 
 class _WiFiPageState extends State<WiFiPage> {
   bool isSwitched = false;
+  bool indicator = false;
 
   List<String> wifiList = [
     "Alibaba",
@@ -19,6 +20,13 @@ class _WiFiPageState extends State<WiFiPage> {
     "Samsung Galaxy A71",
     "PDP Academy 5G"
   ];
+
+  Future<void> _viewIndicator() async {
+    await Future.delayed(Duration(seconds: 5));
+    setState(() {
+      indicator = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +40,17 @@ class _WiFiPageState extends State<WiFiPage> {
               if (!isSwitched) {
                 setState(() {
                   isSwitched = true;
+                  indicator = true;
+                  _viewIndicator();
                 });
               } else
                 setState(() {
                   isSwitched = false;
+                  indicator = false;
                 });
             },
             value: isSwitched,
-            activeColor: Colors.red,
+            activeColor: Colors.black,
             activeTrackColor: Colors.white,
             inactiveThumbColor: Colors.white,
             inactiveTrackColor: Colors.black,
@@ -49,16 +60,37 @@ class _WiFiPageState extends State<WiFiPage> {
           )
         ],
       ),
-      body: Stack(
-        children: [
-          isSwitched
-              ? Container(
-                  padding: EdgeInsets.only(top: 40, left: 20),
+      body: indicator
+          ? Container(
+              padding: EdgeInsets.only(top: 20, left: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Available networks : ",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Container(
+                      margin: EdgeInsets.only(right: 30),
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        backgroundColor:
+                            (indicator) ? Colors.white : Colors.black,
+                        color: Colors.black,
+                      )),
+                ],
+              ),
+            )
+          : Stack(
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 20, left: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Available Networks : ",
+                        "Available networks : ",
                         style: TextStyle(fontSize: 20),
                       ),
                       Container(
@@ -66,32 +98,32 @@ class _WiFiPageState extends State<WiFiPage> {
                           width: 20,
                           height: 20,
                           child: CircularProgressIndicator(
-                            backgroundColor: Colors.white,
+                            backgroundColor: Colors.black,
                             color: Colors.black,
                           )),
                     ],
                   ),
-                )
-              : SizedBox.shrink(),
-          Container(
-            margin: EdgeInsets.only(top: 80),
-            width: MediaQuery.of(context).size.width,
-            child: (isSwitched)
-                ? ListView.builder(
-                    itemCount: wifiList.length,
-                    itemBuilder: (context, index) {
-                      return card(index);
-                    })
-                : SizedBox.shrink(),
-          )
-        ],
-      ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 70),
+                  width: MediaQuery.of(context).size.width,
+                  child: (isSwitched)
+                      ? ListView.builder(
+                          itemCount: wifiList.length,
+                          itemBuilder: (context, index) {
+                            return card(index);
+                          })
+                      : SizedBox.shrink(),
+                ),
+              ],
+            ),
     );
   }
 
   Widget card(int index) {
     return Column(
       children: [
+        Divider(),
         Card(
             margin: EdgeInsets.only(top: 5, bottom: 5, left: 20, right: 5),
             elevation: 0,
@@ -120,7 +152,6 @@ class _WiFiPageState extends State<WiFiPage> {
                 child: Icon(Icons.keyboard_arrow_right),
               ),
             )),
-        Divider()
       ],
     );
   }

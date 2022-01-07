@@ -10,7 +10,8 @@ class ListviewPage extends StatefulWidget {
   _ListviewPageState createState() => _ListviewPageState();
 }
 
-class _ListviewPageState extends State<ListviewPage> {
+class _ListviewPageState extends State<ListviewPage>
+{
   List<Color> colorList = [
     Colors.orangeAccent,
     Colors.purple,

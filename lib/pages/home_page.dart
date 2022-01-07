@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.pushNamed(context, WiFiPage.id);
               },
-              child: Text("WiFi"),
+              child: Text("WiFi, Switch widget, "),
             ),
           ],
         ),
