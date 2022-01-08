@@ -1,6 +1,7 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ContactAccessPage extends StatefulWidget {
   static const String id = "contact_access_page";
@@ -13,12 +14,23 @@ class ContactAccessPage extends StatefulWidget {
 
 class _ContactAccessPageState extends State<ContactAccessPage> {
   Iterable<Contact> _contacts = [];
-  Iterable<Contact> _mobiles = [];
+  List<Color> colorList = Colors.accents;
+
+  bool indicator = true;
+
+  Future<void> changeIndicator() async {
+    await Future.delayed(Duration(milliseconds: 1400));
+
+    setState(() {
+      indicator = false;
+    });
+  }
 
   @override
   void initState() {
     getContacts();
     super.initState();
+    changeIndicator();
   }
 
   Future<void> getContacts() async {
@@ -32,57 +44,83 @@ class _ContactAccessPageState extends State<ContactAccessPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            appBar: AppBar(
-              title: const Text(
-                "Contacts",
-                style: TextStyle(fontSize: 25),
-              ),
-              centerTitle: true,
-              leading: IconButton(
-                icon: const Icon(Icons.menu),
-                onPressed: () {},
-              ),
+    return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Colors.black,
             ),
-            body: ListView.builder(
-              padding: const EdgeInsets.only(top: 10, left: 10, right: 20),
-              itemCount: _contacts.length,
-              itemBuilder: (BuildContext context, int index) {
-                return _itemContacts(index);
-              },
-            )));
+            onPressed: () {},
+          ),
+          actions: [
+            SizedBox(
+              width: 50,
+            ),
+            Expanded(
+                child: Container(
+              child: TextFormField(
+
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.only(left: 10, top: 10),
+                  hintText: "Search contacts :",
+                ),
+              ),
+            ))
+          ],
+        ),
+        body: (indicator)
+            ? Center(
+                child: SpinKitThreeBounce(
+                  color: Colors.black,
+                  size: 30,
+                ),
+              )
+            : ListView.builder(
+                padding: const EdgeInsets.only(top: 10, left: 10, right: 5),
+                itemCount: _contacts.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return _itemContacts(index);
+                },
+              ));
   }
 
   Widget _itemContacts(int index) {
-    return Card(
-      child: ListTile(
-        contentPadding: const EdgeInsets.all(10),
-        leading: CircleAvatar(
-          backgroundColor: Colors.blueAccent,
-          minRadius: 50,
-          maxRadius: 50,
-          child: Text(
-            _contacts.elementAt(index).initials(),
-            style: const TextStyle(color: Colors.white, fontSize: 18),
+    return Column(
+      children: [
+        ListTile(
+          leading: CircleAvatar(
+            backgroundColor: colorList[index % 16],
+            radius: 25,
+            child: Text(
+              _contacts.elementAt(index).initials(),
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          title: Text(
+            _contacts.elementAt(index).displayName ?? '',
+          ),
+          subtitle: Text(
+            _contacts.elementAt(index).phones!.first.value.toString(),
+            style: TextStyle(color: Colors.grey),
+          ),
+          trailing: IconButton(
+            icon: Icon(
+              Icons.phone,
+              color: Colors.green,
+              size: 30,
+            ),
+            onPressed: () {
+              launch("tel://${_contacts.elementAt(index).phones!.first.value}");
+            },
           ),
         ),
-        title: Text(
-          _contacts.elementAt(index).givenName ?? '',
-        ),
-        subtitle:
-            Text(_contacts.elementAt(index).phones!.first.value.toString()),
-        trailing: IconButton(
-          icon: Icon(
-            Icons.phone,
-            color: Colors.greenAccent[400],
-            size: 30,
-          ),
-          onPressed: () {
-            launch("tel://${_contacts.elementAt(index).phones!.first.value}");
-          },
-        ),
-      ),
+        Divider(),
+      ],
     );
   }
 }

@@ -37,6 +37,7 @@ dependencies:
   url_launcher: ^6.0.17
   contacts_service: ^0.6.3
   permission_handler: ^8.3.0
+  flutter_spinkit: ^5.1.0
 
 dev_dependencies:
   flutter_test:

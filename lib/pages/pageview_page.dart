@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_catalog/pages/contact_access_page.dart';
-import 'package:widget_catalog/pages/listview_page.dart';
 import 'package:permission_handler/permission_handler.dart';
-
 
 class PageViewPage extends StatefulWidget {
   const PageViewPage({Key? key}) : super(key: key);
@@ -15,18 +13,7 @@ class PageViewPage extends StatefulWidget {
 }
 
 class _PageViewPageState extends State<PageViewPage> {
-  List<Color> colorList = [
-    Colors.orangeAccent,
-    Colors.purple,
-    Colors.blueAccent,
-    Colors.redAccent,
-    Colors.blue,
-    Colors.orangeAccent,
-    Colors.purple,
-    Colors.blueAccent,
-    Colors.redAccent,
-    Colors.blue
-  ];
+  List<Color> colorList = Colors.accents;
 
   List<Contact> contactList = [
     Contact("Ilhomjon", "+998945096336"),
@@ -36,8 +23,6 @@ class _PageViewPageState extends State<PageViewPage> {
     Contact("Sanjar aka", "+9989341000140"),
     Contact("Sardorbek", "+99896547841"),
     Contact("Shaxriyor", "+998911122767"),
-    Contact("Ucell Call Centre", "8123"),
-    Contact("PDP Call Centre", "+998787774747"),
     Contact("My number", "+998930000342"),
   ];
 
@@ -89,7 +74,7 @@ class _PageViewPageState extends State<PageViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("PageView"),
+        title: (_selectedPage == 1) ? Text("Home") : Text("Contacts"),
       ),
       body: PageView(
         controller: _pageController,
@@ -104,12 +89,10 @@ class _PageViewPageState extends State<PageViewPage> {
               child: ListView.builder(
                   itemCount: contactList.length,
                   itemBuilder: (context, index) {
-                    return card(index);
+                    return contact_Item(index);
                   })),
           home(),
-          Container(
-            color: Colors.orangeAccent,
-          ),
+          ContactAccessPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -138,21 +121,21 @@ class _PageViewPageState extends State<PageViewPage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.message),
-            label: 'Message',
+            icon: Icon(Icons.contacts),
+            label: 'Contacts',
           ),
         ],
       ),
     );
   }
 
-  Widget card(int index) {
+  Widget contact_Item(int index) {
     return Card(
         margin: EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
         elevation: 1,
         child: ListTile(
           leading: CircleAvatar(
-            backgroundColor: colorList[index],
+            backgroundColor: colorList[index % 16],
             radius: 25,
             child: Text(
               contactList[index].name[0],
@@ -183,11 +166,9 @@ class _PageViewPageState extends State<PageViewPage> {
   Widget home() {
     return Center(
       child: Container(
-        child: TextButton(
-          child: Text("Contacts"),
-          onPressed: () {
-            _askPermissions(ContactAccessPage.id);
-          },
+        child: Text(
+          "Home",
+          style: TextStyle(fontSize: 20),
         ),
       ),
     );
