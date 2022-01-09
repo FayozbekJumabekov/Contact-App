@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_catalog/pages/contact_access_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+
 class PageViewPage extends StatefulWidget {
   const PageViewPage({Key? key}) : super(key: key);
 

@@ -13,6 +13,14 @@ class ContactAccessPage extends StatefulWidget {
 }
 
 class _ContactAccessPageState extends State<ContactAccessPage> {
+  final _textcontroller = TextEditingController();
+
+  void clearText() {
+    _textcontroller.clear();
+  }
+
+  String text = "";
+
   Iterable<Contact> _contacts = [];
   List<Color> colorList = Colors.accents;
 
@@ -46,6 +54,7 @@ class _ContactAccessPageState extends State<ContactAccessPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          elevation: 3,
           backgroundColor: Colors.white,
           leading: IconButton(
             icon: Icon(
@@ -60,14 +69,31 @@ class _ContactAccessPageState extends State<ContactAccessPage> {
             ),
             Expanded(
                 child: Container(
+              padding: EdgeInsets.only(top: 5),
               child: TextFormField(
-
+                controller: _textcontroller,
+                onChanged: (text) {
+                  setState(() {
+                    this.text = text;
+                  });
+                },
+                cursorColor: Colors.black,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.only(left: 10, top: 10),
                   hintText: "Search contacts :",
+                  border: InputBorder.none,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      text = "";
+                      clearText();
+                    },
+                    icon: Icon(
+                      Icons.clear,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
               ),
-            ))
+            )),
           ],
         ),
         body: (indicator)
@@ -81,46 +107,57 @@ class _ContactAccessPageState extends State<ContactAccessPage> {
                 padding: const EdgeInsets.only(top: 10, left: 10, right: 5),
                 itemCount: _contacts.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return _itemContacts(index);
+                  return _itemContacts(index, text);
                 },
               ));
   }
 
-  Widget _itemContacts(int index) {
-    return Column(
-      children: [
-        ListTile(
-          leading: CircleAvatar(
-            backgroundColor: colorList[index % 16],
-            radius: 25,
-            child: Text(
-              _contacts.elementAt(index).initials(),
-              style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          title: Text(
-            _contacts.elementAt(index).displayName ?? '',
-          ),
-          subtitle: Text(
-            _contacts.elementAt(index).phones!.first.value.toString(),
-            style: TextStyle(color: Colors.grey),
-          ),
-          trailing: IconButton(
-            icon: Icon(
-              Icons.phone,
-              color: Colors.green,
-              size: 30,
-            ),
-            onPressed: () {
-              launch("tel://${_contacts.elementAt(index).phones!.first.value}");
-            },
-          ),
-        ),
-        Divider(),
-      ],
-    );
+  Widget _itemContacts(int index, String text) {
+    Iterable<Contact> searchContacts = _contacts;
+
+    print(searchContacts);
+
+    return (searchContacts
+            .elementAt(index)
+            .displayName!
+            .toLowerCase()
+            .contains(text))
+        ? Column(
+            children: [
+              ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: colorList[index % 16],
+                  radius: 25,
+                  child: Text(
+                    _contacts.elementAt(index).initials(),
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                title: Text(
+                  _contacts.elementAt(index).displayName ?? '',
+                ),
+                subtitle: Text(
+                  _contacts.elementAt(index).phones!.first.value.toString(),
+                  style: TextStyle(color: Colors.grey),
+                ),
+                trailing: IconButton(
+                  icon: Icon(
+                    Icons.phone,
+                    color: Colors.green,
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    launch(
+                        "tel://${_contacts.elementAt(index).phones!.first.value}");
+                  },
+                ),
+              ),
+              Divider(),
+            ],
+          )
+        : SizedBox.shrink();
   }
 }
