@@ -12,18 +12,7 @@ class ListviewPage extends StatefulWidget {
 
 class _ListviewPageState extends State<ListviewPage>
 {
-  List<Color> colorList = [
-    Colors.orangeAccent,
-    Colors.purple,
-    Colors.blueAccent,
-    Colors.redAccent,
-    Colors.blue,
-    Colors.orangeAccent,
-    Colors.purple,
-    Colors.blueAccent,
-    Colors.redAccent,
-    Colors.blue
-  ];
+  List<Color> colorList = Colors.primaries;
 
   List<Contact> contactList = [
     Contact("Ilhomjon", "+998945096336"),
@@ -42,27 +31,27 @@ class _ListviewPageState extends State<ListviewPage>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("Contacts"),
-      ),
+
       body: Container(
+        margin: EdgeInsets.only(top: 10),
           width: MediaQuery.of(context).size.width,
-          child: ListView.builder(
+          child: ListView.separated(
+
               itemCount: contactList.length,
               itemBuilder: (context, index) {
-                return card(index);
-              })),
+                return contact_Item(index);
+              }, separatorBuilder: (BuildContext context, int index) {return Divider(height: 20,); },)),
     );
   }
 
-  Widget card(int index) {
+
+  Widget contact_Item(int index) {
     return Card(
         margin: EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
         elevation: 1,
         child: ListTile(
           leading: CircleAvatar(
-            backgroundColor: colorList[index],
+            backgroundColor: colorList[index % 16],
             radius: 25,
             child: Text(
               contactList[index].name[0],

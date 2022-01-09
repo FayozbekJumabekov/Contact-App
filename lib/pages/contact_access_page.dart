@@ -13,21 +13,23 @@ class ContactAccessPage extends StatefulWidget {
 }
 
 class _ContactAccessPageState extends State<ContactAccessPage> {
-  final _textcontroller = TextEditingController();
+  var _textEditingcontroller = TextEditingController();
 
   void clearText() {
-    _textcontroller.clear();
+   setState(() {
+     _textEditingcontroller.clear();
+   });
   }
 
   String text = "";
 
   Iterable<Contact> _contacts = [];
-  List<Color> colorList = Colors.accents;
+  List<Color> colorList = Colors.primaries;
 
   bool indicator = true;
 
   Future<void> changeIndicator() async {
-    await Future.delayed(Duration(milliseconds: 1400));
+    await Future.delayed(Duration(milliseconds: 1300));
 
     setState(() {
       indicator = false;
@@ -71,7 +73,7 @@ class _ContactAccessPageState extends State<ContactAccessPage> {
                 child: Container(
               padding: EdgeInsets.only(top: 5),
               child: TextFormField(
-                controller: _textcontroller,
+                controller: _textEditingcontroller,
                 onChanged: (text) {
                   setState(() {
                     this.text = text;
@@ -104,6 +106,7 @@ class _ContactAccessPageState extends State<ContactAccessPage> {
                 ),
               )
             : ListView.builder(
+
                 padding: const EdgeInsets.only(top: 10, left: 10, right: 5),
                 itemCount: _contacts.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -115,7 +118,6 @@ class _ContactAccessPageState extends State<ContactAccessPage> {
   Widget _itemContacts(int index, String text) {
     Iterable<Contact> searchContacts = _contacts;
 
-    print(searchContacts);
 
     return (searchContacts
             .elementAt(index)
@@ -155,7 +157,9 @@ class _ContactAccessPageState extends State<ContactAccessPage> {
                   },
                 ),
               ),
-              Divider(),
+
+              Divider(height: 30,),
+
             ],
           )
         : SizedBox.shrink();
