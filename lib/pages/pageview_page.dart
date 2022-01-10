@@ -17,6 +17,16 @@ class PageViewPage extends StatefulWidget {
 class _PageViewPageState extends State<PageViewPage> {
   List<Color> colorList = Colors.accents;
 
+  List<Contact> contactList = [
+    Contact("Ilhomjon", "+998945096336"),
+    Contact("Javlon aka", "+998901234567"),
+    Contact("Doniyor", "+9989300000000"),
+    Contact("Mansurbek", "+998914747474"),
+    Contact("Sanjar aka", "+9989341000140"),
+    Contact("Sardorbek", "+99896547841"),
+    Contact("Shaxriyor", "+998911122767"),
+    Contact("My number", "+998930000342"),
+  ];
 
   PageController _pageController = PageController();
   int _selectedPage = 1;
@@ -57,7 +67,7 @@ class _PageViewPageState extends State<PageViewPage> {
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else if (permissionStatus == PermissionStatus.permanentlyDenied) {
       final snackBar =
-      SnackBar(content: Text('Contact data not available on device'));
+          SnackBar(content: Text('Contact data not available on device'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
@@ -65,8 +75,6 @@ class _PageViewPageState extends State<PageViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
 
       body: PageView(
         controller: _pageController,
@@ -110,5 +118,55 @@ class _PageViewPageState extends State<PageViewPage> {
     );
   }
 
+  Widget contact_Item(int index) {
+    return Card(
+        margin: EdgeInsets.only(top: 5, bottom: 5, left: 5, right: 5),
+        elevation: 1,
+        child: ListTile(
+          leading: CircleAvatar(
+            backgroundColor: colorList[index % 16],
+            radius: 25,
+            child: Text(
+              contactList[index].name[0],
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          title: Text(contactList[index].name),
+          subtitle: Text(
+            "Mobile : ${contactList[index].phone}",
+            style: TextStyle(color: Colors.grey),
+          ),
+          trailing: IconButton(
+            onPressed: () {
+              launch("tel:${contactList[index].phone}");
+            },
+            icon: Icon(
+              Icons.phone,
+              size: 30,
+              color: Colors.green,
+            ),
+          ),
+        ));
+  }
 
+  Widget home() {
+    return Center(
+      child: Container(
+        child: Text(
+          "Home",
+          style: TextStyle(fontSize: 20),
+        ),
+      ),
+    );
+  }
+}
+
+class Contact {
+  String name;
+  String phone;
+
+  Contact(this.name, this.phone);
 }
