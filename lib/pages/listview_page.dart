@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'contactBaza.dart';
 
 class ListviewPage extends StatefulWidget {
   const ListviewPage({Key? key}) : super(key: key);
@@ -13,28 +14,8 @@ class ListviewPage extends StatefulWidget {
 class _ListviewPageState extends State<ListviewPage> {
   List<Color> colorList = Colors.primaries;
 
-  List<Contact> contactList = [
-    Contact("Ilhomjon", "+998945096336"),
-    Contact("Javlon aka", "+998901234567"),
-    Contact("Doniyor", "+9989300000000"),
-    Contact("Mansurbek", "+998914747474"),
-    Contact("Sanjar aka", "+9989341000140"),
-    Contact("Sardorbek", "+99896547841"),
-    Contact("Shaxriyor", "+998911122767"),
-    Contact("Ucell Call Centre", "8123"),
-    Contact("PDP Call Centre", "+998787774747"),
-    Contact("My number", "+998930000342"),
-    Contact("Ilhomjon", "+998945096336"),
-    Contact("Javlon aka", "+998901234567"),
-    Contact("Doniyor", "+9989300000000"),
-    Contact("Mansurbek", "+998914747474"),
-    Contact("Sanjar aka", "+9989341000140"),
-    Contact("Sardorbek", "+99896547841"),
-    Contact("Shaxriyor", "+998911122767"),
-    Contact("Ucell Call Centre", "8123"),
-    Contact("PDP Call Centre", "+998787774747"),
-    Contact("My number", "+998930000342"),
-  ];
+  List<Contactt> contactList = AddContacts().getContact;
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +24,7 @@ class _ListviewPageState extends State<ListviewPage> {
       body: ListView(
         children: [
           SizedBox(
-            height: 100,
+            height: 90,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: contactList.length,
@@ -106,8 +87,8 @@ class _ListviewPageState extends State<ListviewPage> {
   Widget contact_Item_horizontal(int index) {
     return Container(
       margin: EdgeInsets.fromLTRB(10, 10, 5, 10),
-      width: 110,
-      height: 80,
+      width: 100,
+      height: 60,
       decoration: BoxDecoration(
           color: colorList[index % 16],
           borderRadius: BorderRadius.circular(50)),
@@ -132,9 +113,3 @@ class _ListviewPageState extends State<ListviewPage> {
   }
 }
 
-class Contact {
-  String name;
-  String phone;
-
-  Contact(this.name, this.phone);
-}
