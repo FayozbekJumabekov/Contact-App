@@ -19,9 +19,9 @@ class AddContacts {
     Contactt("My number", "+998930000342"),
   ];
 
-   setContact(String name,String phone) {
+  set setContact(Contactt contact) {
 
-     this.contactList.add(Contactt(name, phone));
+     contactList.add(contact);
 
   }
 

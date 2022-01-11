@@ -7,8 +7,7 @@ import 'contactBaza.dart';
 class ContactAccessPage extends StatefulWidget {
   static const String id = "contact_access_page";
 
-  AddContacts contact = AddContacts();
-
+  AddContacts cont = AddContacts();
 
   ContactAccessPage({Key? key}) : super(key: key);
 
@@ -150,10 +149,6 @@ class _ContactAccessPageState extends State<ContactAccessPage> {
                     size: 30,
                   ),
                   onPressed: () {
-                    setState(() {
-
-                    });
-
                     launch(
                         "tel://${_contacts.elementAt(index).phones!.first.value}");
                   },
