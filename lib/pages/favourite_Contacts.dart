@@ -5,7 +5,7 @@ class Contactt {
   Contactt(this.name, this.phone);
 }
 
-class AddContacts {
+class FavouriteContacts {
   List<Contactt> contactList = [
     Contactt("Ilhomjon", "+998945096336"),
     Contactt("Javlon aka", "+998901234567"),

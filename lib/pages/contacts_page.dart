@@ -2,12 +2,12 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'contactBaza.dart';
+import 'favourite_Contacts.dart';
 
 class ContactPage extends StatefulWidget {
   static const String id = "contacts_page";
 
-  AddContacts cont = AddContacts();
+  FavouriteContacts cont = FavouriteContacts();
 
   ContactPage({Key? key}) : super(key: key);
 
