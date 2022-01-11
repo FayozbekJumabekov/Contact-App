@@ -91,7 +91,7 @@ class _PageViewPageState extends State<PageViewPage> {
             label: 'Phone',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.contacts),
+            icon: Icon(Icons.contacts,),
             label: 'Contacts',
           ),
         ],
