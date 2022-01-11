@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:widget_catalog/pages/contact_access_page.dart';
+import 'package:widget_catalog/pages/contacts_page.dart';
 
-import 'package:widget_catalog/pages/listview_page.dart';
+import 'package:widget_catalog/pages/phone_page.dart';
 import 'package:widget_catalog/pages/pageview_page.dart';
 
 
@@ -19,9 +19,9 @@ class MyApp extends StatelessWidget {
       home: PageViewPage(),
       routes: {
 
-        ListviewPage.id: (context) => ListviewPage(),
+        PhonePage.id: (context) => PhonePage(),
         PageViewPage.id: (context) => PageViewPage(),
-        ContactAccessPage.id:(context)=>ContactAccessPage(),
+        ContactPage.id:(context)=>ContactPage(),
 
       },
     );

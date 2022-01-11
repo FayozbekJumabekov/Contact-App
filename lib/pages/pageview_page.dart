@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:widget_catalog/pages/contact_access_page.dart';
+import 'package:widget_catalog/pages/contactBaza.dart';
+import 'package:widget_catalog/pages/contacts_page.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:widget_catalog/pages/listview_page.dart';
-
+import 'package:widget_catalog/pages/phone_page.dart';
 
 class PageViewPage extends StatefulWidget {
   const PageViewPage({Key? key}) : super(key: key);
@@ -75,7 +75,6 @@ class _PageViewPageState extends State<PageViewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: PageView(
         controller: _pageController,
         onPageChanged: (int index) {
@@ -83,13 +82,7 @@ class _PageViewPageState extends State<PageViewPage> {
             _selectedPage = index;
           });
         },
-        children: [
-          ListviewPage(),
-
-          ContactAccessPage(),
-
-
-        ],
+        children: [PhonePage(), ContactPage()],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPage,
@@ -110,7 +103,6 @@ class _PageViewPageState extends State<PageViewPage> {
             icon: Icon(Icons.phone),
             label: 'Phone',
           ),
-
           BottomNavigationBarItem(
             icon: Icon(Icons.contacts),
             label: 'Contacts',
@@ -154,16 +146,6 @@ class _PageViewPageState extends State<PageViewPage> {
         ));
   }
 
-  Widget home() {
-    return Center(
-      child: Container(
-        child: Text(
-          "Home",
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-    );
-  }
 }
 
 class Contact {

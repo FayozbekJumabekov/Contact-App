@@ -4,18 +4,18 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'contactBaza.dart';
 
-class ContactAccessPage extends StatefulWidget {
-  static const String id = "contact_access_page";
+class ContactPage extends StatefulWidget {
+  static const String id = "contacts_page";
 
   AddContacts cont = AddContacts();
 
-  ContactAccessPage({Key? key}) : super(key: key);
+  ContactPage({Key? key}) : super(key: key);
 
   @override
-  _ContactAccessPageState createState() => _ContactAccessPageState();
+  _ContactPageState createState() => _ContactPageState();
 }
 
-class _ContactAccessPageState extends State<ContactAccessPage> {
+class _ContactPageState extends State<ContactPage> {
   var _textEditingcontroller = TextEditingController();
 
   void clearText() {
@@ -32,7 +32,7 @@ class _ContactAccessPageState extends State<ContactAccessPage> {
   bool indicator = true;
 
   Future<void> changeWaitingAnimation() async {
-    await Future.delayed(Duration(milliseconds: 1300));
+    await Future.delayed(Duration(milliseconds: 1500));
 
     setState(() {
       indicator = false;

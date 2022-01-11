@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'contactBaza.dart';
 
-class ListviewPage extends StatefulWidget {
-  const ListviewPage({Key? key}) : super(key: key);
+class PhonePage extends StatefulWidget {
+  const PhonePage({Key? key}) : super(key: key);
 
-  static final String id = "listview_page";
+  static final String id = "phone_page";
 
   @override
-  _ListviewPageState createState() => _ListviewPageState();
+  _PhonePageState createState() => _PhonePageState();
 }
 
-class _ListviewPageState extends State<ListviewPage> {
+class _PhonePageState extends State<PhonePage> {
   List<Color> colorList = Colors.primaries;
 
   List<Contactt> contactList = AddContacts().getContact;
