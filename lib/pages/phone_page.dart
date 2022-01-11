@@ -16,9 +16,6 @@ class _PhonePageState extends State<PhonePage> {
 
   List<Contactt> contactList = FavouriteContacts().getContact;
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

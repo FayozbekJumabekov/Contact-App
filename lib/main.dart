@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:widget_catalog/pages/contacts_page.dart';
-
-import 'package:widget_catalog/pages/phone_page.dart';
 import 'package:widget_catalog/pages/pageview_page.dart';
-
+import 'package:widget_catalog/pages/phone_page.dart';
 
 void main() {
   runApp(MyApp());
